@@ -1,0 +1,11 @@
+body {
+    background: url(https://media.istockphoto.com/id/1055226442/fr/vectoriel/insignes-de-sh%C3%A9rif-de-s%C3%A9curit%C3%A9-rangers-du-texas-logo-bouclier-et-agents-de-police.jpg?s=170667a&w=is&k=20&c=0Y5G0Muj9Mg_PS1hiw-qUwzrnKmiqvB311HOFzsrygI=);
+    background-position: cover;
+}
+
+.car {
+    background: url(https://media2.giphy.com/media/9Pa5gQNQTUVgZuziS5/giphy.gif);
+    height: 50vh;
+    width: 100vw;
+    background-position: center;
+}

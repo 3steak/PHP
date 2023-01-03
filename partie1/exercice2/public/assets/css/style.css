@@ -1,0 +1,15 @@
+.chuck {
+    background: url(/exercice2/public/assets/img/chuck-norris-walker-texas-ranger.gif);
+    height: 50vh;
+    background-repeat: no-repeat;
+    background-position: fill;
+    width: 90vw;
+    margin: 0 auto;
+    border-radius: 20px;
+
+}
+
+body {
+    background: url(https://media.istockphoto.com/id/1055226442/fr/vectoriel/insignes-de-sh%C3%A9rif-de-s%C3%A9curit%C3%A9-rangers-du-texas-logo-bouclier-et-agents-de-police.jpg?s=170667a&w=is&k=20&c=0Y5G0Muj9Mg_PS1hiw-qUwzrnKmiqvB311HOFzsrygI=);
+    background-position: cover;
+}
