@@ -16,18 +16,18 @@
         <div class="row">
             <div class="text-center text-white bg-dark p-4">
                 <h1>EXERCICES PHP PARTIE 4</h1>
-                <h1>LES FONCTIONS </h1>
+                <h1>LES TABLEAUX </h1>
             </div>
 
             <div class="col-12 d-flex gap-4 flex-column justify-content-center bg-primary-subtle p-4">
-                <a class="btn btn-primary w-75 mx-auto" href="/exercice1/index.php" role="button">Exercice 1</a>
-                <a class="btn btn-primary w-75 mx-auto" href="/exercice2/index.php" role="button">Exercice 2</a>
-                <a class="btn btn-primary w-75 mx-auto" href="/exercice3/index.php" role="button">Exercice 3</a>
-                <a class="btn btn-primary w-75 mx-auto" href="/exercice4/index.php" role="button">Exercice 4</a>
-                <a class="btn btn-primary w-75 mx-auto" href="/exercice5/index.php" role="button">Exercice 5</a>
-                <a class="btn btn-primary w-75 mx-auto" href="/exercice6/index.php" role="button">Exercice 6</a>
-                <a class="btn btn-primary w-75 mx-auto" href="/exercice7/index.php" role="button">Exercice 7</a>
-                <a class="btn btn-primary w-75 mx-auto" href="/exercice8/index.php" role="button">Exercice 8</a>
+                <a class="btn btn-primary w-75 mx-auto" href="./exercice1/index.php" role="button">Exercice 1</a>
+                <a class="btn btn-primary w-75 mx-auto" href="./exercice2/index.php" role="button">Exercice 2</a>
+                <a class="btn btn-primary w-75 mx-auto" href="./exercice3/index.php" role="button">Exercice 3</a>
+                <a class="btn btn-primary w-75 mx-auto" href="./exercice4/index.php" role="button">Exercice 4</a>
+                <a class="btn btn-primary w-75 mx-auto" href="./exercice5/index.php" role="button">Exercice 5</a>
+                <a class="btn btn-primary w-75 mx-auto" href="./exercice6/index.php" role="button">Exercice 6</a>
+                <a class="btn btn-primary w-75 mx-auto" href="./exercice7/index.php" role="button">Exercice 7</a>
+                <a class="btn btn-primary w-75 mx-auto" href="./exercice8/index.php" role="button">Exercice 8</a>
 
             </div>
         </div>

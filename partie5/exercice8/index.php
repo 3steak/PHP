@@ -1,13 +1,6 @@
 <?php
-$nbr1 = 2;
-$nbr2 = 3;
-$nbr3 = 4;
+$months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 
-function sum(int $nbr1, int $nbr2, int $nbr3)
-{
-    $result = $nbr1 + $nbr2 + $nbr3;
-    echo $result;
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,11 +18,15 @@ function sum(int $nbr1, int $nbr2, int $nbr3)
     <h1 class="bg-dark text-white text-center p-2">Exercice 8</h1>
     <div class="card p-4 m-4 bg-dark text-center text-white">
 
-        <?= sum()
+        <?php
+        foreach ($months as $month) {
+            echo "$month <br><hr>";
+        }
         ?>
     </div>
-
-    <div class="text-center m-4"> <a class="btn btn-info w-50 mx-auto" href="/index.php" role="button">Accueil</a>
+    <div class="text-center m-4"><a class="btn btn-dark w-50 mx-auto" href="../exercice9/index.php" role="button">Exercice suivant</a>
+    </div>
+    <div class="text-center m-4"><a class="btn btn-info w-50 mx-auto" href="/index.php" role="button">Accueil</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

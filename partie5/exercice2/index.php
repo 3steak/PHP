@@ -1,9 +1,5 @@
 <?php
-function word(string $string)
-{
-    return $string;
-};
-
+$months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre', 'octobre', 'novembre', 'décembre'];
 
 ?>
 <!DOCTYPE html>
@@ -23,12 +19,12 @@ function word(string $string)
     <div class="card p-4 m-4 bg-dark text-center text-white">
 
         <?php
-        var_dump(word('oui'));
+        print_r($months[2]);
         ?>
     </div>
-    <div class="text-center m-4"> <a class="btn btn-dark w-50 mx-auto" href="/exercice3/index.php" role="button">Exercice suivant</a>
+    <div class="text-center m-4"> <a class="btn btn-dark w-50 mx-auto" href="../exercice3/index.php" role="button">Exercice suivant</a>
     </div>
-    <div class="text-center m-4"> <a class="btn btn-info w-50 mx-auto" href="/index.php" role="button">Accueil</a>
+    <div class="text-center m-4"> <a class="btn btn-info w-50 mx-auto" href="../index.php" role="button">Accueil</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
