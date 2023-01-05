@@ -6,7 +6,7 @@ function displayForm()
 {
     // Je declare mon formulaire dans une variable 
     $form = '<!-- form exo 5 -->
-<form method="get" action="index.php">
+<form enctype="multipart/form-data" method="post" action="index.php">
     <select class="form-select my-2" aria-label="select" name="civility">
         <option value="">Choose your civility</option>
         <option value="Mr">Mr</option>
@@ -23,8 +23,8 @@ function displayForm()
         <div id="firstnameHelp" class="form-text  text-white">Enter your firstname</div>
     </div>
     <div class="input-group mb-3">
-  <input type="file" class="form-control" name="file" id="inputGroupFile02">
-  <label class="input-group-text" for="inputGroupFile02">Upload</label>
+  <input type="file" class="form-control" accept=".pdf" name="file" id="file">
+  <label class="input-group-text" for=" file">Upload</label>
 </div>
     <div class="text-center">
         <button type="submit" class="btn btn-light">Submit</button>
@@ -33,21 +33,21 @@ function displayForm()
 </form>';
 
     //  Je contrôle les getteur
-    if (!isset($_GET['civility'], $_GET['lastname'], $_GET['firstname'], $_GET['file'])) {
+    if (!isset($_POST['civility'], $_POST['lastname'], $_POST['firstname'], $_FILES['file'])) {
         echo $form;
     } elseif (
-        isset($_GET['civility'], $_GET['lastname'], $_GET['firstname'], $_GET['file'])
-        && ($_GET['civility'] != '' && $_GET['lastname'] != '' && $_GET['firstname'] != '' && $_GET['file'] != '')
+        isset($_POST['civility'], $_POST['lastname'], $_POST['firstname'], $_FILES['file'])
+        && ($_POST['civility'] != '' && $_POST['lastname'] != '' && $_POST['firstname'] != '' && $_FILES['file']['type'] === 'application/pdf')
     ) {
-        $civility = $_GET['civility'];
-        $lastname = $_GET['lastname'];
-        $firstname = $_GET['firstname'];
-        $file = $_GET['file'];
+        $civility = $_POST['civility'];
+        $lastname = $_POST['lastname'];
+        $firstname = $_POST['firstname'];
+        $file = $_FILES['file']['name'];
 
-        echo "Bonjour $civility $lastname $firstname, comment allez vous ?<br>Votre fichier est $file";
+        echo "Bonjour $civility $lastname $firstname, comment allez vous ?<br>Votre fichier est $file <br>";
     } else {
         echo '<div class="alert alert-success" role="alert">
-        Il manque une ou plusieurs données !
+        Il manque une ou plusieurs données !<br><hr> Le fichier doit être au format PDF !
       </div><br>' . $form;
     }
 }
