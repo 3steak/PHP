@@ -1,0 +1,10 @@
+.pokemon {
+    background: url(https://media4.giphy.com/media/6vEi7p81nYYcU/giphy.gif);
+    background-size: cover;
+
+}
+
+.btn {
+    background: url(https://i.gifer.com/embedded/download/GPyD.gif);
+    background-size: contain;
+}
