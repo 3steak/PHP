@@ -18,11 +18,14 @@
             </div>
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
-                    <li><a href="/partie9/index.php">Exercice 1</a></li>
+                    <li><a href="../partie9/index.php">Exercice 1</a></li>
                     <li><a href="../exercice2/index.php">Exercice 2</a></li>
                     <li><a href="../exercice3/index.php">Exercice 3</a></li>
                     <li><a href="../exercice4/index.php">Exercice 4</a></li>
                     <li><a href="../exercice5/index.php">Exercice 5</a></li>
+                    <li><a href="../exercice6/index.php">Exercice 6</a></li>
+                    <li><a href="../exercice7/index.php">Exercice 7</a></li>
+                    <li><a href="../exercice8/index.php">Exercice 8</a></li>
                 </ul>
             </div>
             <span class="navTrigger">
@@ -58,7 +61,8 @@
                     //  et le formatage de date
                     $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
                     echo $formatter->format(time());
-                    ?>
+                    '<br>'; ?>
+
                 </div>
             </div>
         </div>
@@ -68,7 +72,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <!-- Jquery needed -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="/partie8/script.js"></script>
+    <script src="../script.js"></script>
 
     <!-- Function used to shrink nav bar removing paddings and adding black background -->
     <script>
