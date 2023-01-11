@@ -26,13 +26,13 @@ print_r($_COOKIE);
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
                     <li><a href="../index.php">Exercice 1</a></li>
-                    <li><a href="../exercice2/index.php">Exercice 2</a></li>
-                    <li><a href="../exercice3/index.php">Exercice 3</a></li>
-                    <li><a href="../exercice4/index.php">Exercice 4</a></li>
-                    <li><a href="../exercice5/index.php">Exercice 5</a></li>
-                    <li><a href="../exercice6/index.php">Exercice 6</a></li>
-                    <li><a href="../exercice7/index.php">Exercice 7</a></li>
-                    <li><a href="../exercice8/index.php">Exercice 8</a></li>
+                    <li><a href="./exercice2/index.php">Exercice 2</a></li>
+                    <li><a href="./exercice3/index.php">Exercice 3</a></li>
+                    <li><a href="./exercice4/index.php">Exercice 4</a></li>
+                    <li><a href="./exercice5/index.php">Exercice 5</a></li>
+                    <li><a href="./exercice6/index.php">Exercice 6</a></li>
+                    <li><a href="./exercice7/index.php">Exercice 7</a></li>
+                    <li><a href="./exercice8/index.php">Exercice 8</a></li>
                 </ul>
             </div>
             <span class="navTrigger">
