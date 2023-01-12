@@ -1,11 +1,15 @@
 <?php
+print_r($_POST);
 
-$date1 = "16-05-2016";
-$dateExo = strtotime($date1);
-$dateNow = time();
-$interval = ($dateNow - $dateExo) / (24 * 60 * 60);
-// $format = "l d M Y à H:i:s";
-// $interval = date($format, $interval);
+if (isset($_POST['login'], $_POST['password'])) {
+    $login = $_POST['login'];
+    $password = $_POST['password'];
+    setcookie('login', $_POST['login']);
+    setcookie('password', $_POST['password']);
+    $_COOKIE['login'] = $login;
+    $_COOKIE['password'] = $password;
+};
+print_r($_COOKIE)
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +20,7 @@ $interval = ($dateNow - $dateExo) / (24 * 60 * 60);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="../style8.css">
+    <link rel="stylesheet" href="/partie8/style8.css">
     <title>EXERCICES PHP</title>
 </head>
 
@@ -33,9 +37,6 @@ $interval = ($dateNow - $dateExo) / (24 * 60 * 60);
                     <li><a href="../exercice3/index.php">Exercice 3</a></li>
                     <li><a href="../exercice4/index.php">Exercice 4</a></li>
                     <li><a href="../exercice5/index.php">Exercice 5</a></li>
-                    <li><a href="../exercice6/index.php">Exercice 6</a></li>
-                    <li><a href="../exercice7/index.php">Exercice 7</a></li>
-                    <li><a href="../exercice8/index.php">Exercice 8</a></li>
                 </ul>
             </div>
             <span class="navTrigger">
@@ -50,24 +51,42 @@ $interval = ($dateNow - $dateExo) / (24 * 60 * 60);
         <div class="text-center oui text-white bg-dark p-4 bg-opacity-75">
             <h1 class="p-2">EXERCICES PHP PARTIE 8</h1>
             <h2 class="p-2">VARIABLES SUPERGLOBALES, SESSIONS, COOKIES</h2>
-            <h3 class="p-2">EXERCICE 5</h3>
+            <h3 class="p-2">COOKIE A JOUR</h3>
         </div>
-
+        </div>
     </section>
     <section class="vh-100">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="d-flex flex-column gap-4 text-center">
-                    <h3 class="text-white">Exo 5</h3>
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 1rem;">
+                        <div class="row g-0">
 
-                    <p class="text-white"> L'écart entre le 16 mai 2016 et ajd en timestamp vaut <?= $interval ?></p>
-                    <p class="text-white">Avec le dateTime </p>
-                    <?php
-                    $origin = new DateTimeImmutable('16-05-2016');
-                    $target = new DateTime('now', new DateTimeZone('Europe/Paris'));
-                    $interval = $origin->diff($target);
-                    ?>
-                    <p class="text-white"> L'écart entre le 16 mai 2016 et ajd en timestamp vaut <?php echo $interval->format('%R%a days') ?></p>
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+                                    <!----------- Tableau ustilisateur  --------->
+                                    <p>COOKIE MIS A JOUR</p>
+                                    <table class="table table-dark">
+                                        <thead>
+                                            <tr>
+
+                                                <th scope="col">USERS</th>
+                                                <th scope="col">PASSWORD</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><?= $_COOKIE['login'] ?? '' ?></td>
+                                                <td><?= $_COOKIE['password'] ?? '' ?></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,7 +96,7 @@ $interval = ($dateNow - $dateExo) / (24 * 60 * 60);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <!-- Jquery needed -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="../script.js"></script>
+    <script src="/partie8/script.js"></script>
 
     <!-- Function used to shrink nav bar removing paddings and adding black background -->
     <script>

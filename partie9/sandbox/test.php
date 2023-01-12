@@ -1,19 +1,14 @@
 <?php
 
-
 // Je stock les valeurs des inputs dans mes variables
-if ($_POST['month'] == "0" || $_POST['year'] == "0") {
-    $alert = 'Veuillez selectionner un mois et une année';
-    $month = '1';
-    $year = '2023';
-} else {
+if (!empty($_POST['month']) && !empty($_POST['year'])) {
     $month = $_POST['month'];
     $year = $_POST['year'];
-};
+}
+
+
 // nombre de jour dans le mois de l'année donnée
-$daysInMonth = cal_days_in_month(CAL_GREGORIAN, (int)$month, (int)$year);
-
-
+$number = cal_days_in_month(CAL_GREGORIAN, (int)$month, (int)$year);
 
 $months = [
     'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet',
@@ -23,14 +18,15 @@ $months = [
     'Novembre',
     'Décembre'
 ];
-//  month (int) en string
+// Je convertis mon month (int) en string
 $monthToString = $months[$month - 1];
 
 
-// 1 er jour du mois donné en lettres
+// Recupere le 1 er jour du mois donné
 date_default_timezone_set('Europe/Paris');
 $firstDayOfMonth = date("N", mktime(0, 0, 0, (int)$month, 1, (int)$year));
 ?>
+
 
 <!--  HTML  -->
 <!DOCTYPE html>
@@ -41,9 +37,7 @@ $firstDayOfMonth = date("N", mktime(0, 0, 0, (int)$month, 1, (int)$year));
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="./public/assets/css/styleTP.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-
+    <link rel="stylesheet" href="/partie9/TP/public/assets/css/styleTP.css">
     <title>CALENDRIER</title>
 </head>
 
@@ -52,30 +46,34 @@ $firstDayOfMonth = date("N", mktime(0, 0, 0, (int)$month, 1, (int)$year));
         <form action="#" method="post" class="d-flex gap-2 m-4">
             <div class="select1">
                 <select class="form-select" name="month" aria-label="Default select example">
-                    <!-- faire un if sur l'option -->
-                    <!-- SI $key+1 == $month -->
-                    <option selected value="0">Choisissez un mois</option>
-                    <?php
-                    foreach ($months as $key => $month) {
-                        echo '<option value=' . $key + 1 . ' >' . $month . '</option>';
-                    }
-                    ?>
+                    <option selected>Choisissez un mois</option>
+                    <option value="1">Janvier</option>
+                    <option value="2">Fevrier</option>
+                    <option value="3">Mars</option>
+                    <option value="4">Avril</option>
+                    <option value="5">Mai</option>
+                    <option value="6">Juin</option>
+                    <option value="7">Juillet</option>
+                    <option value="8">Août</option>
+                    <option value="9">Septembre</option>
+                    <option value="10">Octobre</option>
+                    <option value="11">Novembre</option>
+                    <option value="12">Décembre</option>
                 </select>
             </div>
             <div class="select2">
                 <select class="form-select" name="year" aria-label="Default select example">
-                    <option selected value="0">Choisissez l'année</option>
+                    <option selected>Choisissez l'année</option>
                     <?php
-                    for ($selectYear = 2030; $selectYear > 1970; $selectYear--) {
+                    for ($selectYear = 2023; $selectYear > 1970; $selectYear--) {
                         echo '<option  value=' . $selectYear . '>' . $selectYear . '</option>';
                     }
                     ?>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary text-white"><i class="fa-regular fa-calendar-days me-2"></i> VOIR</button>
+            <button type="submit" class="btn btn-primary">VOIR</button>
         </form>
-        <small class="text-white bg-opacity-75 bg-dark d-flex justify-content-center"><?= $alert ?? '' ?></small>
-        <div class="calendar mx-auto mt-2 mb-4">
+        <div class="calendar mx-auto m-4">
             <div class="calendar__picture py-4">
                 <h2><?= $monthToString ?></h2>
                 <h3><?= $year ?></h3>
@@ -89,14 +87,14 @@ $firstDayOfMonth = date("N", mktime(0, 0, 0, (int)$month, 1, (int)$year));
                 <div class="calendar__day">S</div>
                 <div class="calendar__day">D</div>
 
-                <!--  Création des div vide selon quel est le premier jour du mois   -->
-                <!--  Création des div en fonction du nombre de jours dans le mois  -->
+                <!-- Je créais des div vide selon quel est le premier jour du mois  -->
+                <!-- Je créais des divs en fonction du nombre de jours dans le mois -->
 
                 <?php
                 for ($day = 1; $day < $firstDayOfMonth; $day++) {
-                    echo '<div class="calendar__number bg-dark bg-opacity-25 text-white"></div>';
+                    echo '<div class="calendar__number"></div>';
                 };
-                for ($days = 1; $days <= $daysInMonth; $days++) {
+                for ($days = 1; $days <= $number; $days++) {
                     echo '<div class="calendar__number">' . $days . '</div>';
                 };
                 ?>

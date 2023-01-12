@@ -1,10 +1,3 @@
-<?php
-//  Fonction affichage formulaire si cookie inéxistant 
-
-
-print_r($_COOKIE);
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
