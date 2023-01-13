@@ -1,14 +1,30 @@
 <?php
+$studentsInfo = file_get_contents("C:\laragon\www\partie9\TP\studentsInfo.json");
+$studentsInfo = json_decode($studentsInfo);
 
-// Je stock les valeurs des inputs dans mes variables
-if (!empty($_POST['month']) && !empty($_POST['year'])) {
-    $month = $_POST['month'];
-    $year = $_POST['year'];
+
+foreach ($studentsInfo as $studentsArray) {
+    foreach ($studentsArray as $key => $value) {
+        echo "$key => $value<br><hr>";
+    }
 }
 
+die;
 
+
+// Je stock les valeurs des inputs dans mes variables
+if (empty($_POST['month']) || empty($_POST['year'])) {
+    $alert = 'Veuillez selectionner un mois et une année';
+    $month = '1';
+    $year = '2023';
+} else {
+    $month = $_POST['month'];
+    $year = $_POST['year'];
+};
 // nombre de jour dans le mois de l'année donnée
-$number = cal_days_in_month(CAL_GREGORIAN, (int)$month, (int)$year);
+$daysInMonth = cal_days_in_month(CAL_GREGORIAN, (int)$month, (int)$year);
+
+
 
 $months = [
     'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet',
@@ -18,15 +34,18 @@ $months = [
     'Novembre',
     'Décembre'
 ];
-// Je convertis mon month (int) en string
+//  month (int) en string
 $monthToString = $months[$month - 1];
 
 
-// Recupere le 1 er jour du mois donné
+// 1 er jour du mois donné en lettres
 date_default_timezone_set('Europe/Paris');
 $firstDayOfMonth = date("N", mktime(0, 0, 0, (int)$month, 1, (int)$year));
-?>
 
+// Calcul du nombre de jour du mois précédent
+$daysInMonthBefore = date("t", mktime(0, 0, 0, (int)$month - 1, 1, (int)$year));
+
+?>
 
 <!--  HTML  -->
 <!DOCTYPE html>
@@ -37,7 +56,9 @@ $firstDayOfMonth = date("N", mktime(0, 0, 0, (int)$month, 1, (int)$year));
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="/partie9/TP/public/assets/css/styleTP.css">
+    <link rel="stylesheet" href="./public/assets/css/styleTP.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
     <title>CALENDRIER</title>
 </head>
 
@@ -46,34 +67,30 @@ $firstDayOfMonth = date("N", mktime(0, 0, 0, (int)$month, 1, (int)$year));
         <form action="#" method="post" class="d-flex gap-2 m-4">
             <div class="select1">
                 <select class="form-select" name="month" aria-label="Default select example">
-                    <option selected>Choisissez un mois</option>
-                    <option value="1">Janvier</option>
-                    <option value="2">Fevrier</option>
-                    <option value="3">Mars</option>
-                    <option value="4">Avril</option>
-                    <option value="5">Mai</option>
-                    <option value="6">Juin</option>
-                    <option value="7">Juillet</option>
-                    <option value="8">Août</option>
-                    <option value="9">Septembre</option>
-                    <option value="10">Octobre</option>
-                    <option value="11">Novembre</option>
-                    <option value="12">Décembre</option>
+                    <!-- faire un if sur l'option -->
+                    <!-- SI $key+1 == $month -->
+                    <option selected value="">Choisissez un mois</option>
+                    <?php
+                    foreach ($months as $key => $month) {
+                        echo '<option value=' . $key + 1 . ' >' . $month . '</option>';
+                    }
+                    ?>
                 </select>
             </div>
             <div class="select2">
                 <select class="form-select" name="year" aria-label="Default select example">
-                    <option selected>Choisissez l'année</option>
+                    <option selected value="">Choisissez l'année</option>
                     <?php
-                    for ($selectYear = 2023; $selectYear > 1970; $selectYear--) {
+                    for ($selectYear = 2030; $selectYear > 1970; $selectYear--) {
                         echo '<option  value=' . $selectYear . '>' . $selectYear . '</option>';
                     }
                     ?>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">VOIR</button>
+            <button type="submit" class="btn btn-primary text-white"><i class="fa-regular fa-calendar-days me-2"></i> VOIR</button>
         </form>
-        <div class="calendar mx-auto m-4">
+        <small class="text-white bg-opacity-75 bg-dark d-flex justify-content-center"><?= $alert ?? '' ?></small>
+        <div class="calendar mx-auto mt-2 mb-4">
             <div class="calendar__picture py-4">
                 <h2><?= $monthToString ?></h2>
                 <h3><?= $year ?></h3>
@@ -87,14 +104,15 @@ $firstDayOfMonth = date("N", mktime(0, 0, 0, (int)$month, 1, (int)$year));
                 <div class="calendar__day">S</div>
                 <div class="calendar__day">D</div>
 
-                <!-- Je créais des div vide selon quel est le premier jour du mois  -->
-                <!-- Je créais des divs en fonction du nombre de jours dans le mois -->
+                <!--  Création des div vide selon quel est le premier jour du mois   -->
+                <!--  Création des div en fonction du nombre de jours dans le mois  -->
 
+                <!--  POURQUOI -2 ? car jour arret plus jour de début du mois d'apres ? -->
                 <?php
-                for ($day = 1; $day < $firstDayOfMonth; $day++) {
-                    echo '<div class="calendar__number"></div>';
+                for ($day = ($daysInMonthBefore - ($firstDayOfMonth - 2)); $day <= $daysInMonthBefore; $day++) {
+                    echo '<div class="calendar__number bg-dark bg-opacity-25 text-white">' . $day . '</div>';
                 };
-                for ($days = 1; $days <= $number; $days++) {
+                for ($days = 1; $days <= $daysInMonth; $days++) {
                     echo '<div class="calendar__number">' . $days . '</div>';
                 };
                 ?>
@@ -102,10 +120,6 @@ $firstDayOfMonth = date("N", mktime(0, 0, 0, (int)$month, 1, (int)$year));
             </div>
         </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <!-- Jquery needed -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="/partie9/TP/public/assets/js/scriptTP.js"></script>
 </body>
 
 </html>
