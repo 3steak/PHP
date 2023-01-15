@@ -1,4 +1,14 @@
 <?php
+$studentsInfo = file_get_contents("studentsInfo.Json");
+$studentsInfo = json_decode($studentsInfo);
+
+
+foreach ($studentsInfo as $studentsArray) {
+    foreach ($studentsArray as $key => $value) {
+        echo "$key => $value <br><hr>";
+    }
+}
+die;
 
 
 // Je stock les valeurs des inputs dans mes variables
@@ -109,10 +119,7 @@ $daysInMonthBefore = date("t", mktime(0, 0, 0, (int)$month - 1, 1, (int)$year));
             </div>
         </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <!-- Jquery needed -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="/partie9/TP/public/assets/js/scriptTP.js"></script>
+
 </body>
 
 </html>
