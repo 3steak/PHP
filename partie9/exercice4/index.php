@@ -68,13 +68,10 @@
                     <p>Avec time()</p>
                     <!-- OU avec time() -->
                     <?= time() ?>
-                    <br>
-                    <p>Avec STRTOTIME()</p>
-                    <?= strtotime("2 August 2016 15:00") ?>
 
                     <p> Le time stamp du mardi 2 août 2016 à 15h00 :</p>
 
-                    <?= mktime(15, 00, 00, 8, 02, 2016) ?>
+                    <?= mktime(15, 30, 0, 9, 2, 2016) ?>
                 </div>
             </div>
         </div>

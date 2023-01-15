@@ -3,13 +3,14 @@ $studentsInfo = file_get_contents("C:\laragon\www\partie9\TP\studentsInfo.json")
 $studentsInfo = json_decode($studentsInfo);
 
 
-foreach ($studentsInfo as $studentsArray) {
-    foreach ($studentsArray as $key => $value) {
-        echo "$key => $value<br><hr>";
-    }
-}
+// foreach ($studentsInfo as $studentsArray) {
+//     foreach ($studentsArray as $key => $value) {
 
-die;
+//         if ($key == 'birthday' ) {
+//             echo "$key => $value <br><hr>";
+//         }
+//     }
+// };
 
 
 // Je stock les valeurs des inputs dans mes variables
@@ -56,7 +57,7 @@ $daysInMonthBefore = date("t", mktime(0, 0, 0, (int)$month - 1, 1, (int)$year));
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="./public/assets/css/styleTP.css">
+    <link rel="stylesheet" href="/public/assets/css/styleTP.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
     <title>CALENDRIER</title>
@@ -113,13 +114,26 @@ $daysInMonthBefore = date("t", mktime(0, 0, 0, (int)$month - 1, 1, (int)$year));
                     echo '<div class="calendar__number bg-dark bg-opacity-25 text-white">' . $day . '</div>';
                 };
                 for ($days = 1; $days <= $daysInMonth; $days++) {
-                    echo '<div class="calendar__number">' . $days . '</div>';
+                    //  Je formate la date
+                    $formatedMonth = (int)$month < 10 ? "0$month" : $month;
+                    $formatedDays = (int)$days < 10 ? "0$days" : $days;
+                    $formatedDate = "$formatedDays/$formatedMonth";
+
+                    foreach ($studentsInfo as $student) {
+                        if ($formatedDate === $student->birthday) {
+                            $studentBirthday = $student->birthday;
+                            echo '<div class="calendar__number">' . $days . ' ' . $studentBirthday ?? ' ' . '</div>';
+                        }
+                    }
                 };
+
+
                 ?>
 
             </div>
         </div>
     </section>
+
 </body>
 
 </html>

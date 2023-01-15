@@ -2,22 +2,22 @@
 <?php require 'class.php';
 
 //  je crée mes objets
-$remi = new Student('Rémi', '898034400');
+$remi = new Student('Rémi', '17/06');
 
 // echo $remi->firstname;
 // echo '<br>';
 // echo $remi->birthday;
 // echo '<br>';
 
-$mika = new Student('Michaël', '705542400');
-$flo = new Student('Florian', '985824000');
-$stephanie = new Student('Stéphanie', '430185600');
-$perrine = new Student('Perrine', '-5369241600');
-$salah = new Student('Salah', '574560000');
-$fatim = new Student('FatimZahra', '228009600');
+$mika = new Student('Michaël', '15/05');
+$flo = new Student('Florian', '29/03');
+$stephanie = new Student('Stéphanie', '20/08');
+$perrine = new Student('Perrine', '09/11');
+$salah = new Student('Salah', '17/03');
+$fatim = new Student('FatimZahra', '24/03');
 
 // Je les stock dans un tableau
-$studentsArray = [
+$studentsArray = array(
     $remi,
     $mika,
     $flo,
@@ -25,7 +25,7 @@ $studentsArray = [
     $perrine,
     $salah,
     $fatim
-];
+);
 
 //  j'encode mon tableau au format JSON
 $json_students = json_encode($studentsArray);
