@@ -1,8 +1,11 @@
 <?php
-//  Fonction affichage formulaire si cookie inéxistant 
 
-
-print_r($_COOKIE);
+$date1 = "16-05-2016";
+$dateExo = strtotime($date1);
+$dateNow = time();
+$interval = ($dateNow - $dateExo) / (24 * 60 * 60);
+// $format = "l d M Y à H:i:s";
+// $interval = date($format, $interval);
 ?>
 
 <!DOCTYPE html>
@@ -56,18 +59,11 @@ print_r($_COOKIE);
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="d-flex flex-column gap-4 text-center">
                     <h3 class="text-white">Exo 5</h3>
-                    <?php
-                    $date1 = "16-06-2016";
-                    $dateExo = strtotime($date1);
-                    $dateNow = time();
-                    $interval = $dateNow - $dateExo;
-                    // $format = "l d M Y à H:i:s";
-                    // $interval = date($format, $interval);
-                    ?>
+
                     <p class="text-white"> L'écart entre le 16 mai 2016 et ajd en timestamp vaut <?= $interval ?></p>
                     <p class="text-white">Avec le dateTime </p>
                     <?php
-                    $origin = new DateTimeImmutable('16-06-2016');
+                    $origin = new DateTimeImmutable('16-05-2016');
                     $target = new DateTime('now', new DateTimeZone('Europe/Paris'));
                     $interval = $origin->diff($target);
                     ?>
