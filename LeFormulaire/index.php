@@ -22,7 +22,7 @@
             <div class="row d-flex justify-content-center">
                 <div class="col col-md-10 ">
 
-                    <!-- Formulaire -->
+                    <!------ Formulaire ------>
                     <form class="bg-dark bg-opacity-75 rounded-1 p-3" method="post" action="user.php" enctype="multipart/form-data">
                         <h2 class="text-white text-center">SECURITY FORM</h2>
                         <div class=" row">
@@ -32,8 +32,8 @@
                                     <img src="./public/assets/img/avatar.png" class="" alt="avatar" style="width:  150px;" />
                                 </div>
                                 <div class="d-flex justify-content-center">
-                                    <div class="btn btn-dark mb-4">
-                                        <label class="form-label text-white m-1 " for="avatar">Choose your avatar</label>
+                                    <div class="btn btn-light mb-4">
+                                        <label class="form-label text-dark m-1 " for="avatar">Choose your avatar</label>
                                         <input type="file" name="file" class="form-control d-none" id="avatar" />
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
 
                             <div class=" input-group p-3">
                                 <span class="input-group-text bg-dark text-white" id="addon-wrapping">@</span>
-                                <input type="mail" name="mail" class="form-control" id="email" pattern="" maxlength="100" placeholder="Email *" aria-label="email" aria-describedby="addon-wrapping" required>
+                                <input type="mail" name="mail" class="form-control" id="email" maxlength="100" placeholder="Email *" aria-label="email" aria-describedby="addon-wrapping" required>
                             </div>
 
                             <div class="col-12 col-md-6 px-3">
