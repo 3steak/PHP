@@ -14,16 +14,24 @@ body {
 }
 
 input:invalid {
-    box-shadow: 0 0 5px 1px red !important;
+    box-shadow: 0 0 5px 2px red !important;
 }
 
 input:focus:invalid {
-    box-shadow: none;
+    box-shadow: none !important;
 }
 
 input:valid {
-    background-color: ivory;
-    border: none;
-    outline: 2px solid deepskyblue;
-    border-radius: 5px;
+    background-color: ivory !important;
+    border: none !important;
+    outline: 2px solid deepskyblue !important;
+    border-radius: 5px !important;
+}
+
+.avatar {
+    width: 150px;
+}
+
+small {
+    display: none;
 }
