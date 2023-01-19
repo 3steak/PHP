@@ -20,7 +20,14 @@ let email = document.getElementById('email');
 let postalcode = document.getElementById('postalcode');
 let nativecountry = document.getElementById('nativeCountry');
 
-console.log(nativecountry);
+let password = document.getElementById('password');
+let confirmPassword = document.getElementById('confirmPassword');
+let smallPasswordHelp = document.querySelectorAll('passwordHelp');
 
-//  Display .help a l'entrée du password
+console.log(smallPasswordHelp);
+console.log(password);
+console.log(confirmPassword);
 
+// password.addEventListener('focus', () => {
+
+// })

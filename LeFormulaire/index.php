@@ -1,6 +1,10 @@
 <?php
 
 $listCountry = ['Belgique', 'Luxembourg', 'Suisse', 'Burundi', 'Cameroun', 'Comores', 'Djibouti', 'Guinée équatoriale', 'Madagascar', 'République centrafriquaine', 'Rwanda', 'Seychelles', 'Tchad', 'Canada', 'Haïti', 'Vanuatu', 'Algérie', 'Maroc', 'Tunisie', 'Mauritanie', 'Liban', 'Maurice', 'Andorre', 'Saint-Pierre-et-Miquelon', 'Guyane française', 'Guadeloupe', 'Martinique', 'Saint-Martin', 'Saint-Barthélemy', 'La Réunion', 'Mayotte', 'Nouvelle Calédonie', 'Polynésie française', 'Wallis et Futuna'];
+if (!empty($_POST['email'])) {
+}
+$userMail = $_POST['mail'];
+var_dump($userMail);
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +31,7 @@ $listCountry = ['Belgique', 'Luxembourg', 'Suisse', 'Burundi', 'Cameroun', 'Como
                 <div class="col col-md-10 ">
 
                     <!------ Formulaire ------>
-                    <form class="bg-dark bg-opacity-75 rounded-1 p-3" method="post" action="user.php" enctype="multipart/form-data" autocomplete="off">
+                    <form class="bg-dark bg-opacity-75 rounded-1 p-3" method="post" action="" enctype="multipart/form-data" autocomplete="off">
                         <h2 class="text-white text-center">SECURITY FORM</h2>
                         <div class=" row">
                             <!-- Profil picture -->
@@ -70,20 +74,21 @@ $listCountry = ['Belgique', 'Luxembourg', 'Suisse', 'Burundi', 'Cameroun', 'Como
                             <!-- Email -->
                             <div class=" input-group p-3">
                                 <span class="input-group-text bg-dark text-white" id="addon-wrapping">@</span>
-                                <input type="email" name="mail" class="form-control" id="email" maxlength="100" placeholder="Email *" aria-label="email" aria-describedby="addon-wrapping" required>
+                                <input type="email" name="email" class="form-control" id="email" maxlength="100" placeholder="Email *" aria-label="email" aria-describedby="addon-wrapping" required>
                             </div>
                             <!-- Password -->
                             <!--  AJOUTER CHAMPS DE FORCE -->
+                            <!-- pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*_=+-]).{6,15}$" -->
                             <!-- 1 min 1 maj  1 chif et un caractère spécial et 6 et 15 caractères -->
                             <div class="col-12 col-md-6 p-3">
-                                <input type="password" name="password" class="form-control" id="password" placeholder="Password *" pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*_=+-]).{6,15}$" aria-label="password" required>
+                                <input type="password" name="password" class="form-control" id="password" placeholder="Password *" aria-label="password" required>
                                 <small class="text-white help">Must contain 8 or more characters, one number, one special character and one UPPERCASE and lowercase letter </small>
                                 <small class="text-white passwordforce">Password can be better</small>
                                 <small class="text-white passwordforce">Password is great</small>
                                 <small class="text-white passwordforce">Perfect Password</small>
                             </div>
                             <div class="col-12 col-md-6 p-3">
-                                <input type="confirmPassword" name="confirmPassword" class="form-control" id="confirmPassword" pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*_=+-]).{6,15}$" placeholder="Confirm your password *" aria-label="confirmPassword" required>
+                                <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm your password *" aria-label="confirmPassword" required>
                             </div>
                             <!-- Birthday -->
                             <div class="col-12 col-md-6 px-3">
