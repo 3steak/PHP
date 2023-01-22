@@ -1,0 +1,124 @@
+<!-- PHP -->
+<?php
+
+// Création d'un tableau de données pour les niveaux d'études
+$webLanguages = ['HTML/CSS', 'PHP', 'Javascript', 'Python', 'Autres'];
+
+// CONSTANTES
+    // Décodage du json birthCountryList
+    $birthCountryBeforeDecode = file_GET_contents('./public/assets/json/birthCountryList.json');
+    $birthCountryList = json_decode($birthCountryBeforeDecode, true);
+    define('BIRTH_LANGUAGES', $birthCountryList['countries']);
+    // Création d'un tableau de données pour les niveaux d'études
+    define('STUDY_LEVEL', ['none' => 'Sans','bac' => 'BAC','bac2' => 'BAC+2','bac3' => 'BAC+3','sup' => 'Suoérieur']);
+    // Création d'un tableau de données pour les web langages
+    define('WEB_LANGUAGES', ['HTML/CSS', 'PHP', 'Javascript', 'Python', 'Autres']);
+    // REGEX
+        // Lastname
+        define('REGEXP_LASTNAME', "^[a-zA-ZÀ-ÿ' \-]{2,64}$");
+        // Linkedin
+        define('REGEXP_LINKEDIN', "^https:\/\/www.linkedin.com\/in\/([a-z]+)-([a-z]+)-([a-z0-9]+)\/$");
+        // Zipcode
+        define('REGEXP_ZIPCODE', "^(0[1-9]|[1-8]\d|9[0-8])\d{3}$");
+        // Birthday
+        define('REGEXP_BIRTHDAY', "^((19\d{2}|20[01]\d|202[1-3])\-(0[1-9]|1[0-2])\-(0[1-9]|[12][0-9]|3[01]))$");
+        
+
+// Récupérer les données du formulaire passées en POST
+$password = $_POST['password'] ?? '';
+$confirmedPassword = $_POST['confirmedPassword'] ?? '';
+$birthday = $_POST['birthday'] ?? '';
+$profilePicture = $_POST['profilePicture'] ?? '';
+$knownLanguages = $_POST['languages'] ?? '';
+
+// var_dump($password, $confirmedPassword, $lastname, $birthday, $birthCountry, $zipcode, $studyLevel, $profilePicture, $urlLinkedin, $knownLanguages);
+
+
+
+// Vérification des données
+if ($_SERVER['REQUEST_METHOD'] == 'POST') { //Si les données sont bien envoyées en POST
+
+
+    // EMAIL
+    $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL)); // Double nettoyage de l'email récupéré 
+
+    if (empty($email)) { //Si $email est vide
+        $error["email"] = 'L\'email n\'est pas renseigné'; //Message d'erreur EMAIL
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) { //Sinon si $email ne correspond pas à un format d'adresse email
+        $error["email"] = 'L\'email ne correspond pas au format requis pour un email'; //Message d'erreur EMAIL format
+    } 
+
+
+    // LASTNAME
+    // Nettoyage de tout les caractères ASCII 1 à 32
+    $lastname = trim(filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_SPECIAL_CHARS));
+    // Suppression des caractères précisés entre guillemets ""
+    // $lastname = trim(strip_tags($lastname), "\?\,\>\&#61;\&#62;\&#63;\&#33;\&#160;\&#173;\&#160;\ \&#173;\&#8206;\&#8207;");
+    
+    if (empty($lastname)) { //Si $lastname est vide
+        $error["lastname"] = 'Le nom n\'est pas renseigné'; //Message d'erreur lastname
+    } elseif (!filter_var($lastname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>'/'.REGEXP_LASTNAME.'/')))) { //Sinon si $lastname ne correspond pas à un format lastname
+        $error["lastname"] = 'Le nom ne correspond pas au format requis pour un nom'; //Message d'erreur lastname format
+    }
+    
+
+    // URL
+    // Nettoyage de tout les caractères ASCII 1 à 32
+    $url = trim(filter_input(INPUT_POST, 'urlLinkedin', FILTER_SANITIZE_URL));
+    
+    if (empty($url)) { //Si $url est vide
+        $error["url"] = 'L\'url n\'est pas renseigné'; //Message d'erreur url
+    } elseif (!filter_var($url, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>'/'.REGEXP_LINKEDIN.'/')))) { //Sinon si $url ne correspond pas à un format url
+        $error["url"] = 'L\'url ne correspond pas au format requis pour un url linkedin'; //Message d'erreur url format
+    }
+    
+
+    // ZIPCODE
+    // Nettoyage de tout les caractères ASCII 1 à 32
+    $zipcode = trim(filter_input(INPUT_POST, 'zipcode', FILTER_SANITIZE_NUMBER_INT));
+    
+    if (empty($zipcode)) { //Si $zipcode est vide
+        $error["zipcode"] = 'L\'zipcode n\'est pas renseigné'; //Message d'erreur zipcode
+    } elseif (!filter_var($zipcode, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>'/'.REGEXP_ZIPCODE.'/')))) { //Sinon si $url ne correspond pas à un format url
+        $error["zipcode"] = 'Le code postal ne correspond pas au format requis pour un code postal francais'; //Message d'erreur url format
+    }
+
+
+    // BIRTH COUNTRY
+    // Nettoyage de tout les caractères ASCII 1 à 32
+    $birthCountry = trim(filter_input(INPUT_POST, 'birthCountry', FILTER_SANITIZE_SPECIAL_CHARS));
+    
+    if (empty($birthCountry)) { //Si $birthCountry est vide
+        $error["birthCountry"] = 'Le pays de naissance n\'est pas renseigné'; //Message d'erreur pays de naissance vide
+    } elseif (!(in_array($birthCountry, BIRTH_LANGUAGES))) { //Sinon si $birthCountry ne correspond pas à un des pays du json
+        $error["birthCountry"] = 'Le pays sélectionné ne correspond pas à un pays de la liste'; //Message d'erreur pays de naissance correspond pas au json
+    }
+    
+
+    // STUDY LEVEL
+    // Nettoyage de tout les caractères ASCII 1 à 32
+    $studyLevel = trim(filter_input(INPUT_POST, 'studyLevel', FILTER_SANITIZE_SPECIAL_CHARS));
+    
+    if (empty($studyLevel)) { //Si $studyLevel est vide
+        $error["studyLevel"] = 'Le niveau d\'étude n\'est pas renseigné'; //Message d'erreur niveau d'étude vide
+    } elseif (!(key_exists($studyLevel, STUDY_LEVEL))) {
+        $error["studyLevel"] = 'Le niveau d\'étude sélectionné ne correspond pas à un niveau d\étude de la liste'; //Message d'erreur niveau d'étude correspond pas à un niveau d'étude de la liste
+    }
+
+        // CORRECTION
+        // $studyLevel = intval(filter_input(INPUT_POST, 'studyLevel', FILTER_SANITIZE_NUMBER_INT));
+
+        // if($studyLevel<0 || $studyLevel>4){ // Il a mis de 0 à 4 dans ses value
+        //     $error['studyLevel'] = 'Valeur non valide';
+        // }
+
+    // BIRTHDAY
+    // Nettoyage de tout les caractères ASCII 1 à 32
+    $birthday = trim(filter_input(INPUT_POST, 'birthday', FILTER_SANITIZE_NUMBER_INT));
+    
+    if (empty($birthday)) { //Si $birthday est vide
+        $error["birthday"] = 'La date de naissance n\'est pas renseignée'; //Message d'erreur date de naissance pas renseigné
+    } elseif (!filter_var($birthday, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>'/'.REGEXP_BIRTHDAY.'/')))) { //Sinon si $url ne correspond pas à un format url
+        var_dump($birthday);
+        $error["birthday"] = 'La date de naissance n\'est pas valide'; //Message d'erreur url format
+    }
