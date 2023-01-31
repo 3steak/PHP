@@ -1,0 +1,33 @@
+@import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin-bottom: 0 !important;
+}
+
+body {
+    background: url(../img/background-3d.jpg) no-repeat center/cover !important;
+}
+
+input:invalid {
+    box-shadow: 0 0 5px 2px red !important;
+}
+
+input:focus:invalid {
+    box-shadow: none !important;
+}
+
+input:valid {
+    background-color: ivory !important;
+    border: none !important;
+    outline: 2px solid deepskyblue !important;
+    border-radius: 5px !important;
+}
+
+.avatar {
+    width: 150px;
+}

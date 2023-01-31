@@ -1,10 +1,6 @@
 <?php
 
 $listCountry = ['Belgique', 'Luxembourg', 'Suisse', 'Burundi', 'Cameroun', 'Comores', 'Djibouti', 'Guinée équatoriale', 'Madagascar', 'République centrafriquaine', 'Rwanda', 'Seychelles', 'Tchad', 'Canada', 'Haïti', 'Vanuatu', 'Algérie', 'Maroc', 'Tunisie', 'Mauritanie', 'Liban', 'Maurice', 'Andorre', 'Saint-Pierre-et-Miquelon', 'Guyane française', 'Guadeloupe', 'Martinique', 'Saint-Martin', 'Saint-Barthélemy', 'La Réunion', 'Mayotte', 'Nouvelle Calédonie', 'Polynésie française', 'Wallis et Futuna'];
-if (!empty($_POST['email'])) {
-}
-$userMail = $_POST['mail'];
-var_dump($userMail);
 ?>
 
 <!DOCTYPE html>
@@ -103,16 +99,16 @@ var_dump($userMail);
                             <!-- Study -->
                             <div class="btn-group col-12 col-md-6 d-flex flex-column  p-3">
                                 <h3 class="text-white ms-2 pt-3 mb-2">Your study</h3>
-                                <input type="radio" class="btn-check" value="bac" name="studyLvl" id="studyBac" checked />
+                                <input type="radio" class="btn-check" value="0" name="studyLvl" id="studyBac" checked />
                                 <label class="btn btn-dark mx-auto w-75" for="studyBac">Bac</label>
 
-                                <input type="radio" class="btn-check" value="bac2" name="studyLvl" id="studyBac2" />
+                                <input type="radio" class="btn-check" value="1" name="studyLvl" id="studyBac2" />
                                 <label class="btn btn-dark mx-auto w-75" for="studyBac2">Bac+2</label>
 
-                                <input type="radio" class="btn-check" value="bac3" name="studyLvl" id="studyBac3" />
+                                <input type="radio" class="btn-check" value="2" name="studyLvl" id="studyBac3" />
                                 <label class="btn btn-dark mx-auto w-75" for="studyBac3">Bac+3</label>
 
-                                <input type="radio" class="btn-check" value="superior" name="studyLvl" id="studySup" />
+                                <input type="radio" class="btn-check" value="3" name="studyLvl" id="studySup" />
                                 <label class="btn btn-dark mx-auto w-75" for="studySup">Supérior</label>
                             </div>
                             <!-- Web language -->
